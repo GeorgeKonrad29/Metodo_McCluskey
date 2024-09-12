@@ -4,6 +4,7 @@ import data_storage
 import MC
 from copy import deepcopy
 import test as T
+import Graphic as G
 
 def entry_weight (weights):
     weights = weights.split(',')
@@ -48,7 +49,8 @@ def mc_challenge (g_m):
 
 
 if __name__ == "__main__" :
-    weight = entry_weight("0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,24,25,26,27")
+    inputs = G.procesar_numeros()
+    weight = entry_weight(inputs)
     #print(weight)#
     vars = proces_vars(weight)
     #print(vars)#
@@ -69,6 +71,7 @@ if __name__ == "__main__" :
     print(final_result)
     results = MC.simplificar_expresion(final_result,vars)
     print(results)
+    mostrar_resultados(final_result,results)
 
 
 

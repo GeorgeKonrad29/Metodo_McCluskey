@@ -1,0 +1,54 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def procesar_numeros():
+    numeros = entrada.get()
+    try:
+        lista_numeros = list(map(int, numeros.split()))
+        lista_numeros.sort()  # Ordenar la lista de números
+        cadena_numeros = ",".join(map(str, lista_numeros))
+        resultado = f"Números ingresados: {lista_numeros}"
+        etiqueta_resultado.config(text=resultado)
+        return cadena_numeros
+    except ValueError:
+        messagebox.showerror("Error", "Por favor, ingrese solo números enteros positivos separados por espacios.")
+
+def limpiar_entrada():
+    entrada.delete(0, tk.END)
+    etiqueta_resultado.config(text="")
+    
+def mostrar_resultados(final_result, results):
+    ventana_resultados = tk.Toplevel()
+    ventana_resultados.title("Resultados")
+
+    etiqueta_final_result = tk.Label(ventana_resultados, text=f"Final Result: {final_result}")
+    etiqueta_final_result.pack(pady=10)
+
+    etiqueta_results = tk.Label(ventana_resultados, text=f"Results: {results}")
+    etiqueta_results.pack(pady=10)
+
+    boton_cerrar = tk.Button(ventana_resultados, text="Cerrar", command=ventana_resultados.destroy)
+    boton_cerrar.pack(pady=10)
+
+# Crear la ventana principal
+ventana = tk.Tk()
+ventana.title("Ingreso de Números")
+
+# Crear el campo de entrada
+entrada = tk.Entry(ventana, width=50)
+entrada.pack(pady=10)
+
+# Crear el botón "Confirmar"
+boton_confirmar = tk.Button(ventana, text="Confirmar", command=procesar_numeros)
+boton_confirmar.pack(pady=5)
+
+# Crear el botón "Limpiar"
+boton_limpiar = tk.Button(ventana, text="Limpiar", command=limpiar_entrada)
+boton_limpiar.pack(pady=5)
+
+# Crear la etiqueta para mostrar el resultado
+etiqueta_resultado = tk.Label(ventana, text="")
+etiqueta_resultado.pack(pady=10)
+
+# Ejecutar el bucle principal de la aplicación
+ventana.mainloop()
