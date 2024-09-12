@@ -1,5 +1,5 @@
 from string import ascii_uppercase
-import graphic
+import graphic as G 
 import utils
 import data_storage
 import MC
@@ -50,7 +50,8 @@ def mc_challenge (g_m):
 
 
 if __name__ == "__main__" :
-    inputs = G.procesar_numeros()
+    numeros = G.obtener_entrada_usuario()
+    inputs = G.procesar_numeros(numeros)
     weight = entry_weight(inputs)
     #print(weight)#
     vars = proces_vars(weight)
