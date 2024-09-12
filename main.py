@@ -1,10 +1,11 @@
 from string import ascii_uppercase
+import graphic
 import utils
 import data_storage
 import MC
 from copy import deepcopy
 import test as T
-import Graphic as G
+
 
 def entry_weight (weights):
     weights = weights.split(',')
@@ -71,7 +72,7 @@ if __name__ == "__main__" :
     print(final_result)
     results = MC.simplificar_expresion(final_result,vars)
     print(results)
-    mostrar_resultados(final_result,results)
+    G.mostrar_resultados(final_result,results)
 
 
 
