@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox, simpledialog
+from tkinter import Label,Text,messagebox, simpledialog
 
 def procesar_numeros(numeros):
     try:
@@ -12,13 +12,34 @@ def procesar_numeros(numeros):
         return None
 
 def mostrar_resultados(final_result, results):
+    # Asegúrate de que results sea una lista de cadenas
+    if isinstance(results, str):
+        results = results.split()  # Divide la cadena en una lista de palabras
+    elif not isinstance(results, list):
+        results = [str(results)]  # Convierte a lista si no lo es
+
+    # Une los elementos de la lista con '+'
+    results_str = ' + '.join(results)
+
     ventana_resultados = tk.Tk()
-    ventana_resultados.withdraw()  # Ocultar la ventana principal
+    ventana_resultados.title("Resultados")
+    ventana_resultados.geometry("600x400")  # Configurar el tamaño de la ventana
 
-    messagebox.showinfo("Resultados", f"Final Result: {final_result}\nResults: {results}")
+    frame = tk.Frame(ventana_resultados)
+    frame.pack(expand=True, fill='both', padx=10, pady=10)
 
-    ventana_resultados.destroy()
+    label_title = Label(frame, text="Resultados", font=("Helvetica", 16, "bold"))
+    label_title.pack(pady=10)
 
+    label_final_result = Label(frame, text=f"Final Result: {final_result}", font=("Helvetica", 12))
+    label_final_result.pack(pady=5)
+
+    text_widget = Text(frame, wrap='word', height=15)
+    text_widget.pack(expand=True, fill='both', pady=10)
+    text_widget.insert('1.0', results_str)
+    text_widget.config(state='disabled')  # Hacer que el Text widget sea de solo lectura
+
+    ventana_resultados.mainloop()
 def obtener_entrada_usuario():
     ventana = tk.Tk()
     ventana.withdraw()  # Ocultar la ventana principal
