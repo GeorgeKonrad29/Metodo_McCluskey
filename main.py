@@ -69,7 +69,10 @@ if __name__ == "__main__" :
     data_storage.no_sex = utils.no_sex_data(nosex)
     santi = MC.buscar_santi(nosex,simplified_terms)
     data_storage.santi = santi
-    final_result = T.comprobacion(santi,binary_weights,weight)
+    if not santi:
+        final_result = binary_matrix.values()
+    else:
+        final_result = T.comprobacion(santi,binary_weights,weight)    
     print(final_result)
     results = MC.simplificar_expresion(final_result,vars)
     print(results)
