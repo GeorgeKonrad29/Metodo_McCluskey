@@ -23,7 +23,7 @@ def mostrar_resultados(final_result, results):
 
     ventana_resultados = tk.Tk()
     ventana_resultados.title("Resultados")
-    ventana_resultados.geometry("600x400")  # Configurar el tamaño de la ventana
+    ventana_resultados.geometry("400x300")  # Configurar el tamaño de la ventana
 
     frame = tk.Frame(ventana_resultados)
     frame.pack(expand=True, fill='both', padx=10, pady=10)
